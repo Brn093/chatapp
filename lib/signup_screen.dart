@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:chatapp/auth_provider.dart';
 import 'package:chatapp/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -71,10 +70,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Account"),
+        title: Text("Criar Conta"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -96,7 +94,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: Icon(
                             Icons.camera_alt_rounded,
                             size: 50,
-                            color: Color(0xFF3876FD),
                           ),
                         )
                       : ClipRRect(
@@ -110,11 +107,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: _nameController,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
-                  labelText: "Name",
+                  labelText: "Nome",
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "Please Enter Name";
+                    return "Digite o seu nome";
                   }
                   return null;
                 },
@@ -128,7 +125,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "Please Enter Email";
+                    return "Digite o seu E-mail";
                   }
                   return null;
                 },
@@ -138,11 +135,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  labelText: "Password",
+                  labelText: "Senha",
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "Please Enter Password";
+                    return "Digite sua Senha";
                   }
                   return null;
                 },
@@ -153,11 +150,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 55,
                 child: ElevatedButton(
                   onPressed: _signUp,
-                  child: Text("Create Account"),
+                  child: Text("Criar Conta"),
                 ),
               ),
               SizedBox(height: 20),
-              Text("OR"),
+              Text("OU"),
               SizedBox(height: 10),
               TextButton(
                 onPressed: () {
@@ -165,9 +162,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
                 child: Text(
-                  "Sign In",
+                  "Entrar",
                   style: TextStyle(
-                      color: Color(0xFF3876FD),
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),

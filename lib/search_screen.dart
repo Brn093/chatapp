@@ -44,7 +44,7 @@ class _SearchScreenState extends State<SearchScreen> {
     final chatProvider = Provider.of<ChatProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("Search Users")),
+      appBar: AppBar(title: Text("Central de atendimento Dropcell")),
       body: Column(
         children: [
           Padding(

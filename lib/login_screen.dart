@@ -15,13 +15,15 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: Text("DropCell Chat"),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -36,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "Please Enter Email";
+                  return "Digite o seu Email";
                 }
                 return null;
               },
@@ -44,13 +46,27 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 20),
             TextFormField(
               controller: _passwordController,
+              obscureText: !_isPasswordVisible,
               keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
-                labelText: "Password",
+                labelText: "Senha",
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                ),
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "Please Enter Password";
+                  return "Digite a sua Senha";
                 }
                 return null;
               },
@@ -64,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   try {
                     await authProvider.signIn(
                         _emailController.text, _passwordController.text);
-                    Fluttertoast.showToast(msg: "Login Success");
+                    Fluttertoast.showToast(msg: "Usuário logado");
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -74,18 +90,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     print(e);
                   }
                 },
-                child: Text("Login"),
+                child: Text("Entrar"),
               ),
             ),
             SizedBox(height: 20),
-            Text("OR"),
+            Text("OU"),
             SizedBox(height: 10),
             TextButton(
               onPressed: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => SignUpScreen()));
               },
-              child: Text("Create Account"),
+              child: Text("Criar Conta"),
             ),
           ],
         ),

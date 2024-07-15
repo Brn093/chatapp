@@ -61,15 +61,18 @@ class _HomeScreenState extends State<HomeScreen> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: Text("Chats"), actions: [
-          IconButton(
-              onPressed: () {
-                _auth.signOut();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
-              },
-              icon: Icon(Icons.logout)),
-        ]),
+        appBar: AppBar(
+            title: Text("Chat"),
+            automaticallyImplyLeading: false,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    _auth.signOut();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  icon: Icon(Icons.logout)),
+            ]),
         body: Column(
           children: [
             Expanded(
@@ -109,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color(0xFF3876FD),
+          backgroundColor: Colors.black,
           foregroundColor: Colors.white,
           onPressed: () {
             Navigator.push(
